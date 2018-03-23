@@ -25,9 +25,41 @@ print(mo1.group())
 mo2 = heroRegex.search('Tina Fey and Batman')
 print(mo2.group())
 
+mo3 = heroRegex.findall('Tina Fey and Batman')
+print(mo3)
+'''利用findall匹配的是所有满足条件的组合，返回值为list'''
 
+'''利用 * 号匹配零次或多次'''
+batRegex  = re.compile(r'Bat(wo)*man')
+mo1 = batRegex.search('The Adventure of Batman')
+print(mo1.group())
+mo2 = batRegex.search('The Adventrue of Batwoman')
+print(mo2.group())
+mo3 = batRegex.search('The Adventure of Batwowowoman')
+print(mo3.group())
 
+'''利用 + 号匹配一次或多次'''
+batRegex  = re.compile(r'Bat(wo)+man')
+mo1 = batRegex.search('The Adventure of Batman')
+print(mo1 == None)
+mo2 = batRegex.search('The Adventrue of Batwoman')
+print(mo2.group())
+mo3 = batRegex.search('The Adventure of Batwowowoman')
+print(mo3.group())
 
+'''利用{}括号匹配制定次数'''
+
+haRegex = re.compile(r'(Ha){3}')
+mo = haRegex.search('HaHaHa')
+print(mo.group())
+
+greedyHaRegex = re.compile(r'(Ha){3,5}')
+mo1 = greedyHaRegex.search('HaHaHaHaHa')
+print(mo1.group())  #默认贪心匹配，选择尽可能长的字符串。
+
+greedyHaRegex = re.compile(r'(Ha){3,5}?')
+mo1 = greedyHaRegex.search('HaHaHaHaHa')
+print(mo1.group())  #此时可以用问号？声明非贪心匹配。
 
 
 
